@@ -13,6 +13,18 @@
 	<% /* TUDO QUE EU ESCREVER NA PÁGINA .JSP DENTRO DESSA TAG INDICA O USO DA LINGUAGEM JAVA */
 	 out.print("Iniciando com sucesso");
 	%>
+	
+	
+<form action="receber-nome.jsp">
+
+<input name= "nome">
+<input name= "idade">
+
+<input type="submit" value="Enviar">
+
+
+</form>
+
 
 </body>
 </html>
