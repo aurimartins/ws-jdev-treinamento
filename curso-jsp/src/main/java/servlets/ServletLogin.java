@@ -26,6 +26,7 @@ public class ServletLogin extends HttpServlet {
 
 	/* Recebe os dados enviados por um formulario*/
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
 		
@@ -34,6 +35,19 @@ public class ServletLogin extends HttpServlet {
 			ModelLogin modelLogin = new ModelLogin();
 			modelLogin.setLogin(login);
 			modelLogin.setSenha(senha);
+			
+			if (modelLogin.getLogin().equalsIgnoreCase("admin")
+				&& modelLogin.getSenha().equalsIgnoreCase("admin")){/*Simulando Login*/
+				
+				request.getSession().setAttribute("usuario", modelLogin.getLogin());
+				
+				RequestDispatcher redirecionar = request.getRequestDispatcher("principal/principal.jsp");
+				redirecionar.forward(request, response); 
+			}else {
+				RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+				request.setAttribute("msg", "Informe o login e senha corretamente!");
+				redirecionar.forward(request, response);
+			}
 		}else {
 			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
 			request.setAttribute("msg", "Informe o login e senha corretamente!");
