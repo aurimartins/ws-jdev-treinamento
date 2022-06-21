@@ -11,7 +11,7 @@ import model.ModelLogin;
 import java.io.IOException;
 
 
-@WebServlet("/ServletLogin.java") /*Mapeamento de URL quem vem da tela*/ /*NÃO ESQUECER A EXTENSÃO DA CLASS .java*/
+@WebServlet(urlPatterns = {"/principal/ServletLogin.jsp", "/ServletLogin.java"}) /*Mapeamento de URL quem vem da tela*/ /*NÃO ESQUECER A EXTENSÃO DA CLASS .java*/
 public class ServletLogin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
