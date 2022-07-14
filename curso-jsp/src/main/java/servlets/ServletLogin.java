@@ -1,5 +1,8 @@
 package servlets;
 
+import java.io.IOException;
+
+import dao.DAOLoginRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,15 +11,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-import java.io.IOException;
 
-
-@WebServlet(urlPatterns = {"/principal/ServletLogin.jsp", "/ServletLogin.java"}) /*Mapeamento de URL quem vem da tela*/ /*NÃO ESQUECER A EXTENSÃO DA CLASS .java*/
+@WebServlet(urlPatterns = {"/principal/ServletLogin.jsp", "/ServletLogin.java"}) /*Mapeamento de URL quem vem da tela*/ /*Nï¿½O ESQUECER A EXTENSï¿½O DA CLASS .java*/
 public class ServletLogin extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
+	
+	private DAOLoginRepository daoLoginRepository = new DAOLoginRepository();
 
 	public ServletLogin() {
+		
     }
 
     /* Recebe os dados pela URL em parametros*/
@@ -31,32 +35,37 @@ public class ServletLogin extends HttpServlet {
 		String senha = request.getParameter("senha");
 		String url = request.getParameter("url");
 		
-		if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
+		try {
 			
-			ModelLogin modelLogin = new ModelLogin();
-			modelLogin.setLogin(login);
-			modelLogin.setSenha(senha);
-			
-			if (modelLogin.getLogin().equalsIgnoreCase("admin")
-				&& modelLogin.getSenha().equalsIgnoreCase("admin")){/*Simulando Login*/
+			if (login != null && !login.isEmpty() && senha != null && !senha.isEmpty()) {
 				
-				request.getSession().setAttribute("usuario", modelLogin.getLogin());
+				ModelLogin modelLogin = new ModelLogin();
+				modelLogin.setLogin(login);
+				modelLogin.setSenha(senha);
 				
-			if (url == null || url.equals("null")) {
-				url = "principal/principal.jsp";
-				
-			}
-				RequestDispatcher redirecionar = request.getRequestDispatcher(url);
-				redirecionar.forward(request, response); 
+				if (daoLoginRepository.validarAutenticacao(modelLogin)){/*Simulando Login*/
+					
+					request.getSession().setAttribute("usuario", modelLogin.getLogin());
+					
+				if (url == null || url.equals("null")) {
+					url = "principal/principal.jsp";
+					
+				}
+					RequestDispatcher redirecionar = request.getRequestDispatcher(url);
+					redirecionar.forward(request, response); 
+				}else {
+					RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
+					request.setAttribute("msg", "Informe o login e senha corretamente!");
+					redirecionar.forward(request, response);
+				}
 			}else {
 				RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
 				request.setAttribute("msg", "Informe o login e senha corretamente!");
 				redirecionar.forward(request, response);
 			}
-		}else {
-			RequestDispatcher redirecionar = request.getRequestDispatcher("index.jsp");
-			request.setAttribute("msg", "Informe o login e senha corretamente!");
-			redirecionar.forward(request, response);
+		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 	}

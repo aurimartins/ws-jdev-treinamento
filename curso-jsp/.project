@@ -34,4 +34,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>java</name>
+			<type>2</type>
+			<location>C:/Users/auri.martins/eclipse/ws-jdev-treinamento/curso-jsp/src/test/java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
