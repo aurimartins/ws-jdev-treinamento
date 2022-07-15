@@ -1,34 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Responsividade de tela -->
+<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Responsividade de tela -->
 
 <!-- Bootstrap CSS -->
 <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <title>Curso JSP</title>
 
 <style type="text/css">
 h5 {
 	position: absolute;
-	top: 30%;
-	left: 33%;
+	top: 27%;
+	left: 42%;
 }
 
 .msg {
 	position: absolute;
 	top: 70%;
-	left: 33%;
+	left: 39%;
 	font-size: 20px;
-	color: red;
+	color: #664d03;
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+    height: auto;
+    width: auto;
+    text-align: center;
 }
 
 form {
@@ -63,8 +64,9 @@ form {
 
 	</form>
 
-	<h5 class="msg">${msg}</h3>
-
+		<h5 class="msg">${msg}</h5>
+		
+		
 		<!-- Option 1: Bootstrap Bundle with Popper -->
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
