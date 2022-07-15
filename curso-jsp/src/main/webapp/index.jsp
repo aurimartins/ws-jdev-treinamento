@@ -18,6 +18,14 @@ top:30%;
 left:33%;
 }
 
+.msg{
+position: absolute;
+top:70%;
+left:33%;
+font-size: 20px;
+color: red;
+}
+
 form{
 position: absolute;
 top:40%;
@@ -43,13 +51,11 @@ left: 33%;
 	<input class="form-control" name= "senha" type="password">
 </div>
  	
-	<input class="btn btn-primary" type="submit" value="Enviar">
-
-
+	<input type="submit" value="Acessar" class="btn btn-primary">
 
 </form>
 
-<h4>${msg}</h4>
+<h5 class="msg">${msg}</h3>
 
  <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
