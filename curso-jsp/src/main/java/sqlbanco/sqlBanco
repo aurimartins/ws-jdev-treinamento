@@ -25,6 +25,6 @@ ALTER TABLE public.model_login OWNER TO postgres;
  
 INSERT INTO public.model_logn(login,senha) VALUES ('admin','admin');
   
-
-  
 select * from model_login where upper (login) = upper ('Admin');
+
+select count (1) > 0 as existe from model_login where upper (login) = upper (admin);
