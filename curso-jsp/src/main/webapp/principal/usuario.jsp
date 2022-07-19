@@ -48,25 +48,21 @@
 															method="post">
 
 															<div class="form-group form-default">
-																<input type="text" name="id" id="id"
-																	class="form-control" readonly="readonly"
-																	value="${modelLogin.id}"> <span
-																	class="form-bar"></span> <label class="float-label">Id:</label>
+																<input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}"> 
+																<span class="form-bar"></span> 
+																<label class="float-label">Id:</label>
 															</div>
 
 															<div class="form-group form-default">
-																<input type="text" name="nome" id="nome"
-																	class="form-control" required="required"
-																	value="${modelLogin.nome}"> <span
-																	class="form-bar"></span> <label class="float-label">Nome:</label>
+																<input type="text" name="nome" id="nome" class="form-control" required="required" value="${modelLogin.nome}"> 
+																	<span class="form-bar"></span> 
+																	<label class="float-label">Nome:</label>
 															</div>
 
 															<div class="form-group form-default">
-																<input type="email" name="email" id="email"
-																	class="form-control" required="required"
-																	autocapitalize="off" value="${modelLogin.email}">
-																<span class="form-bar"></span> <label
-																	class="float-label">E-mail:</label>
+																<input type="email" name="email" id="email" class="form-control" required="required" autocapitalize="off" value="${modelLogin.email}">
+																<span class="form-bar"></span> 
+																<label class="float-label">E-mail:</label>
 															</div>
 
 															<div class="form-group form-default">
