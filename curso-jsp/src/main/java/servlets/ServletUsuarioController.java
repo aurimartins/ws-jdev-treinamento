@@ -40,6 +40,7 @@ public class ServletUsuarioController extends HttpServlet {
 		
 		//Redirecionamento para a página de Cadastro de Usuários
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/usuario.jsp");
+		request.setAttribute("modelLogin", modelLogin);
 		redireciona.forward(request, response);
 
 	}
