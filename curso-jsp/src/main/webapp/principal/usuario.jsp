@@ -33,12 +33,49 @@
 							<!-- Main-body start -->
 							<div class="main-body">
 								<div class="page-wrapper">
+									
 									<!-- Page-body start -->
 									<div class="page-body">
 										<div class="row">
-											<h1>Cadastro de usuario</h1>
-										</div>
-									</div>
+											<div class="col-sm-12">
+												<!-- Basic Form Inputs card start -->
+												<div class="card">
+													<div class="card-block">
+														<h4 class="sub-title">Cadastro de Usuário</h4>
+
+														<form class="form-material">
+														
+															<div class="form-group form-default">
+																<input type="text" name="footer-email" class="form-control" required=""> 
+																<span class="form-bar"></span> 
+																<label class="float-label">ID:</label>
+															</div>
+															
+															<div class="form-group form-default">
+																<input type="text" name="footer-email" class="form-control" required="">
+																<span class="form-bar"></span> 
+																<label class="float-label">Nome:</label>
+															</div>
+																
+															<div class="form-group form-default">
+																<input type="text" name="footer-email" class="form-control" required=""> 
+																<span class="form-bar"></span> 
+																<label class="float-label">E-mail:</label>
+															</div>
+															
+															<div class="form-group form-default">
+																<input type="password" name="footer-email" class="form-control" required=""> 
+																<span class="form-bar"></span> 
+																<label class="float-label">Password:</label>
+															</div>
+															
+															<button class="btn btn-primary waves-effect waves-light">Voltar</button>
+            												<button class="btn btn-success waves-effect waves-light">Salvar</button>
+															
+														</form>
+													</div>
+												</div>
+											</div>
 									<!-- Page-body end -->
 								</div>
 								<div id="styleSelector"></div>
