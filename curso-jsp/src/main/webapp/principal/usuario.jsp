@@ -43,24 +43,32 @@
 													<div class="card-block">
 														<h4 class="sub-title">Cadastro de Usuário</h4>
 
-														<form class="form-material"	action="<%=request.getContextPath()%>/ServletUsuarioController" method="post" id="formUser">
+														<form class="form-material"
+															action="<%=request.getContextPath()%>/ServletUsuarioController"
+															method="post" id="formUser">
+
+															<input type="hidden" name="acao" id="acao" value="">
 
 															<div class="form-group form-default form-static-label">
-																<input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}"> 
-																<span class="form-bar"></span> 
-																<label class="float-label">ID:</label>
+																<input type="text" name="id" id="id"
+																	class="form-control" readonly="readonly"
+																	value="${modelLogin.id}"> <span
+																	class="form-bar"></span> <label class="float-label">ID:</label>
 															</div>
 
 															<div class="form-group form-default form-static-label">
-																<input type="text" name="nome" id="nome" class="form-control" required="required" value="${modelLogin.nome}"> 
-																	<span class="form-bar"></span> 
-																	<label class="float-label">Nome:</label>
+																<input type="text" name="nome" id="nome"
+																	class="form-control" required="required"
+																	value="${modelLogin.nome}"> <span
+																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
 
 															<div class="form-group form-default form-static-label">
-																<input type="email" name="email" id="email" class="form-control" required="required" autocapitalize="off" value="${modelLogin.email}">
-																<span class="form-bar"></span> 
-																<label class="float-label">E-mail:</label>
+																<input type="email" name="email" id="email"
+																	class="form-control" required="required"
+																	autocapitalize="off" value="${modelLogin.email}">
+																<span class="form-bar"></span> <label
+																	class="float-label">E-mail:</label>
 															</div>
 
 															<div class="form-group form-default form-static-label">
@@ -79,9 +87,14 @@
 																	class="float-label">Senha:</label>
 															</div>
 
-															<button class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
-															<button class="btn btn-success waves-effect waves-light">Salvar</button>
-															<button class="btn btn-danger waves-effect waves-light">Excluir</button>
+															<button type="button"
+																class="btn btn-primary waves-effect waves-light"
+																onclick="limparForm();">Novo</button>
+															<button type="submit"
+																class="btn btn-success waves-effect waves-light">Salvar</button>
+															<button type="button"
+																class="btn btn-danger waves-effect waves-light"
+																onclick="criarDelete();">Excluir</button>
 
 														</form>
 													</div>
@@ -101,21 +114,24 @@
 		</div>
 	</div>
 
-
 	<!-- Required Jquery -->
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
-	
+
 	<script type="text/javascript">
+		function criarDelete() {
+			document.getElementById("formUser").method = 'get';
+			document.getElementById("acao").value = 'deletar';
+			document.getElementById("formUser").submit();
+		}
+
 		function limparForm() {
 			//document.getElementById("formUser").reset(); //Outra forma de zerar o form, porém não está funcionando !
 			var elementos = document.getElementById("formUser").elements /* Retorna os elementos html dentro do form */
-			
-			for (p = 0; p < elementos.length; p++){
+
+			for (p = 0; p < elementos.length; p++) {
 				elementos[p].value = ''
 			}
 		}
 	</script>
-	
 </body>
-
 </html>

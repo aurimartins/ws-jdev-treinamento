@@ -21,10 +21,34 @@ public class ServletUsuarioController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Usado para CONSULTAR e DELETAR */
+		
+		try {
+			String acao = request.getParameter("acao");
+			
+			if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {//Aqui deleta o usuario;
+				
+				String idUser = request.getParameter("id");
+				
+				daoUsuarioRepository.deletarUser(idUser);
+				
+				request.setAttribute("msg", "Excluído com sucesso!");
+				
+			}
+			
+			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
+			
+			}catch(Exception e) {
+				e.printStackTrace();
+				RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
+				request.setAttribute("msg", e.getMessage());
+				redirecionar.forward(request, response);
+			}
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/* Usado para GRAVAR/CRIAR e ATUALIZAR/ALTERAR */
 		
 		try {
 			

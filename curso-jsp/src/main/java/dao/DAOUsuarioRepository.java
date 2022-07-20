@@ -79,5 +79,18 @@ public class DAOUsuarioRepository {
 		resultado.next(); /*Pra ele entrar nos resultados do SQL*/
 		return resultado.getBoolean("existe");
 	}
+	
+	public void deletarUser(String idUser) throws Exception{
+		String sql = "delete from model_login where id = ? ;";
+		
+		PreparedStatement prepareSql = connection.prepareStatement(sql);
+		
+		prepareSql.setLong(1, Long.parseLong(idUser));
+		
+		prepareSql.executeUpdate();
+		
+		connection.commit();
+		
+	}
 
 }
