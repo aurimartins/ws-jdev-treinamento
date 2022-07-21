@@ -24,10 +24,9 @@ h1{
 </head>
 
 <body>
-	<div>
-		<h1>Mensagem de erro, entre em contato com a equipe de suporte do sistema</h1>
-			<% out.print(request.getAttribute("msg"));%>
-	</div>
+	<h1>Mensagem de erro, entre em contato com a equipe de suporte do sistema</h1>
+	
+	<% out.print(request.getAttribute("msg"));%>
 	
 </body>
 </html>

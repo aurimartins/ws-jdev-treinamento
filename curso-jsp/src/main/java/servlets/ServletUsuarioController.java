@@ -5,11 +5,13 @@ import java.io.IOException;
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
+@WebServlet("/ServletUsuarioController.java")
 public class ServletUsuarioController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -26,19 +28,31 @@ public class ServletUsuarioController extends HttpServlet {
 		try {
 			String acao = request.getParameter("acao");
 			
-			if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {//Aqui deleta o usuario;
-				
-				String idUser = request.getParameter("id");
-				
-				daoUsuarioRepository.deletarUser(idUser);
-				
-				request.setAttribute("msg", "Excluído com sucesso!");
-				
-			}
-			
-			request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
-			
-			}catch(Exception e) {
+				if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletar")) {//Aqui deleta o usuario;
+					
+					String idUser = request.getParameter("id");
+					
+					daoUsuarioRepository.deletarUser(idUser);
+					
+					request.setAttribute("msg", "Excluído com sucesso!");
+					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
+					
+				}
+				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("deletarajax")) {//Aqui deleta o usuario com AJAX;
+					
+					String idUser = request.getParameter("id");
+					
+					daoUsuarioRepository.deletarUser(idUser);
+	
+					//Forma de escrever a resposta no caso do uso do Delete com AJAX
+					response.getWriter().write("Excluído com sucesso!"); 
+					
+				}
+				else{					
+					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
+				}
+
+		}catch(Exception e) {
 				e.printStackTrace();
 				RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 				request.setAttribute("msg", e.getMessage());
@@ -47,6 +61,8 @@ public class ServletUsuarioController extends HttpServlet {
 	
 	}
 
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* Usado para GRAVAR/CRIAR e ATUALIZAR/ALTERAR */
 		

@@ -44,8 +44,7 @@
 														<h4 class="sub-title">Cadastro de Usuário</h4>
 
 														<form class="form-material"
-															action="<%=request.getContextPath()%>/ServletUsuarioController"
-															method="post" id="formUser">
+															action="<%=request.getContextPath()%>/ServletUsuarioController"	method="post" id="formUser">
 
 															<input type="hidden" name="acao" id="acao" value="">
 
@@ -93,15 +92,15 @@
 															<button type="submit"
 																class="btn btn-success waves-effect waves-light">Salvar</button>
 															<button type="button"
-																class="btn btn-danger waves-effect waves-light"
-																onclick="criarDelete();">Excluir</button>
+																class="btn btn-danger waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button> 
+																<!-- onclick = "criaDelete();" - Outra forma de criar a função Delete -->
 
 														</form>
 													</div>
 												</div>
 											</div>
 										</div>
-										<span>${msg}</span>
+										<span id="msg">${msg}</span>
 									</div>
 									<!-- Page-body end -->
 								</div>
@@ -118,20 +117,49 @@
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 
 	<script type="text/javascript">
+	
+		//Delete usando AJAX
+		function criarDeleteComAjax(){
+			
+			if(confirm('Deseja excluir os dados?')){
+			
+				var urlAction = document.getElementById("formUser").action;
+				var idUser = document.getElementById("id").value;
+				
+				$.ajax({
+					
+					method: "get",
+					url: urlAction,
+					data: "id=" + idUser + "&acao=deletarajax",
+					success: function (response){
+					
+					limparForm();
+					document.getElementById("msg").textContent = response;
+					}
+					
+				}).fail(function(xhr, status, errorThrown){
+					alert("Erro ao deletar usuário por id: " + xhr.responseText);
+				});
+			}
+		}
+		
+		
 		function criarDelete() {
 			if(confirm("Deseja excluir os dados?")){
+				
 				document.getElementById("formUser").method = 'get';
 				document.getElementById("acao").value = 'deletar';
 				document.getElementById("formUser").submit();
 			}
 		}
+		
 
 		function limparForm() {
 			//document.getElementById("formUser").reset(); //Outra forma de zerar o form, porém não está funcionando !
 			var elementos = document.getElementById("formUser").elements /* Retorna os elementos html dentro do form */
 
 			for (p = 0; p < elementos.length; p++) {
-				elementos[p].value = ''
+				elementos[p].value = '';
 			}
 		}
 	</script>

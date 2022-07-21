@@ -43,7 +43,8 @@ public class DAOUsuarioRepository {
 			connection.commit();
 			
 		}
-		return this.consultaUsuario(objeto.getLogin());// consulta usuario pelo login;
+		// consulta usuario pelo login;
+		return this.consultaUsuario(objeto.getLogin());
 	}
 
 	public ModelLogin consultaUsuario(String login) throws Exception {
@@ -81,7 +82,7 @@ public class DAOUsuarioRepository {
 	}
 	
 	public void deletarUser(String idUser) throws Exception{
-		String sql = "delete from model_login where id = ? ;";
+		String sql = "delete from model_login where id = ?;";
 		
 		PreparedStatement prepareSql = connection.prepareStatement(sql);
 		

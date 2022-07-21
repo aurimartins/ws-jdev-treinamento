@@ -11,9 +11,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-@WebServlet(urlPatterns = { "/principal/ServletLogin.jsp",
-		"/ServletLogin.java" }) /* Mapeamento de URL quem vem da tela */
-/* N�O ESQUECER A EXTENS�O DA CLASS .java */
+@WebServlet(urlPatterns = { 
+		"/principal/ServletLogin.jsp",
+		"/ServletLogin.java" 
+		}) /* Mapeamento de URL quem vem da tela */
+
+/* N�O ESQUECER A EXTENS�O DA CLASS .java .jsp*/
+
 public class ServletLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
