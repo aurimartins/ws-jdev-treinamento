@@ -113,7 +113,7 @@
 	<!-- Required Jquery -->
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	
-	<!-- Modal -->
+<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
@@ -154,16 +154,36 @@
 	    </div>
 	  </div>
 	</div>
+<!-- Modal FIM -->
 
+
+<!-- JavaScript -->
 	<script type="text/javascript">
 		
 		
 	function buscarUsuario(){
 	
-		var nomeBuscado = document.getElementById("nomeBusca").value;
+		var nomeBusca = document.getElementById("nomeBusca").value;
 		
-		if(nomeBuscado != null && nomeBuscado != '' && nomeBuscado.trim() != ''){ /*Validando que deve ter valor pra buscar no banco de dados*/
-			alert (nomeBuscado);
+		if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ /*Validando que deve ter valor pra buscar no banco de dados*/
+
+			var urlAction = document.getElementById("formUser").action;
+			
+			$.ajax({
+				
+				method: "get",
+				url: urlAction,
+				data: "nomeBusca=" + nomeBusca + "&acao=buscarUsuarioAjax",
+				success: function (response){
+					
+				
+				}
+					
+			}).fail(function(xhr, status, errorThrown){
+				alert("Erro ao buscar usuário por nome: " + xhr.responseText);
+			});
+		
+		
 		}
 		
 	}
@@ -213,5 +233,7 @@
 		}
 	}
 	</script>
+<!-- JavaScript -->
+
 </body>
 </html>

@@ -47,7 +47,20 @@ public class ServletUsuarioController extends HttpServlet {
 					//Forma de escrever a resposta no caso do uso do Delete com AJAX
 					response.getWriter().write("Excluído com sucesso!"); 
 					
+				} 
+				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUsuarioAjax")) {// Aqui busca o usuario com AJAX;
+
+					String nomeBusca = request.getParameter("nomeBusca");
+
+					//daoUsuarioRepository.deletarUser(idUser);
+
+					// Forma de escrever a resposta no caso do uso do Delete com AJAX
+					//response.getWriter().write("Excluído com sucesso!");
+
 				}
+				
+				
+				
 				else{					
 					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
 				}
