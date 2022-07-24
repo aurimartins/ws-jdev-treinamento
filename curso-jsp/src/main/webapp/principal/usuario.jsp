@@ -126,8 +126,26 @@
 	      </div>
 	      
 	      <div class="modal-body">
-	        Local de criação de formulário de pesquisa!
+	        <div class="input-group mb-3">
+  				<input type="text" class="form-control" placeholder="Nome" aria-label="nome" id="nomeBusca" aria-describedby="basic-addon2">
+	  			<div class="input-group-append">
+	    			<button class="btn btn-success" type="button" onclick="buscarUsuario();">Buscar</button>
+	  			</div>
+			</div>
 	      </div>
+	      
+	      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Ver</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
 	      
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -138,51 +156,62 @@
 	</div>
 
 	<script type="text/javascript">
+		
+		
+	function buscarUsuario(){
 	
+		var nomeBuscado = document.getElementById("nomeBusca").value;
+		
+		if(nomeBuscado != null && nomeBuscado != '' && nomeBuscado.trim() != ''){ /*Validando que deve ter valor pra buscar no banco de dados*/
+			alert (nomeBuscado);
+		}
+		
+	}
+		
+		
 		//Delete usando AJAX
-		function criarDeleteComAjax(){
+	function criarDeleteComAjax(){
 			
-			if(confirm('Deseja excluir os dados?')){
+		if(confirm('Deseja excluir os dados?')){
 			
-				var urlAction = document.getElementById("formUser").action;
-				var idUser = document.getElementById("id").value;
+			var urlAction = document.getElementById("formUser").action;
+			var idUser = document.getElementById("id").value;
 				
-				$.ajax({
+			$.ajax({
 					
-					method: "get",
-					url: urlAction,
-					data: "id=" + idUser + "&acao=deletarajax",
-					success: function (response){
+				method: "get",
+				url: urlAction,
+				data: "id=" + idUser + "&acao=deletarajax",
+				success: function (response){
 					
-					limparForm();
-					document.getElementById("msg").textContent = response;
-					}
+				limparForm();
+				document.getElementById("msg").textContent = response;
+				}
 					
-				}).fail(function(xhr, status, errorThrown){
-					alert("Erro ao deletar usuário por id: " + xhr.responseText);
-				});
-			}
+			}).fail(function(xhr, status, errorThrown){
+				alert("Erro ao deletar usuário por id: " + xhr.responseText);
+			});
 		}
+	}
 		
 		
-		function criarDelete() {
-			if(confirm("Deseja excluir os dados?")){
+	function criarDelete() {
+		if(confirm("Deseja excluir os dados?")){
 				
-				document.getElementById("formUser").method = 'get';
-				document.getElementById("acao").value = 'deletar';
-				document.getElementById("formUser").submit();
-			}
+			document.getElementById("formUser").method = 'get';
+			document.getElementById("acao").value = 'deletar';
+			document.getElementById("formUser").submit();
 		}
+	}
 		
+	function limparForm() {
+		//document.getElementById("formUser").reset(); //Outra forma de zerar o form, porém não está funcionando !
+		var elementos = document.getElementById("formUser").elements /* Retorna os elementos html dentro do form */
 
-		function limparForm() {
-			//document.getElementById("formUser").reset(); //Outra forma de zerar o form, porém não está funcionando !
-			var elementos = document.getElementById("formUser").elements /* Retorna os elementos html dentro do form */
-
-			for (p = 0; p < elementos.length; p++) {
-				elementos[p].value = '';
-			}
+		for (p = 0; p < elementos.length; p++) {
+			elementos[p].value = '';
 		}
+	}
 	</script>
 </body>
 </html>
