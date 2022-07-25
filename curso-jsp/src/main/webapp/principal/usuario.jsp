@@ -176,6 +176,8 @@
 				data: "nomeBusca=" + nomeBusca + "&acao=buscarUsuarioAjax",
 				success: function (response){
 					
+					alert(response);
+					
 				
 				}
 					
