@@ -90,7 +90,7 @@
 															<button type="submit" class="btn btn-success waves-effect waves-light">Salvar</button>
 															<button type="button" class="btn btn-danger waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button> 
 															<!-- onclick = "criaDelete();" - Outra forma de criar a função Delete -->
-															<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">Pesquisar</button>
+															<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
 
 														</form>
 													</div>
@@ -114,10 +114,9 @@
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
 	
 <!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="exampleModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
-	    
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Pesquisa de usuário</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -134,20 +133,23 @@
 			</div>
 	      </div>
 	      
-	      <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Ver</th>
-    </tr>
-  </thead>
-  <tbody>
+	      <div style="height: 400px; overflow: scroll;">
+			<table class="table" id="tabelaresultados">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Nome</th>
+						<th scope="col">Ver</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		</div>
+		<span id="totalResultados"></span>
 
-  </tbody>
-</table>
-	      
-	      <div class="modal-footer">
+				<div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 	      </div>
 	      
@@ -161,35 +163,42 @@
 	<script type="text/javascript">
 		
 		
-	function buscarUsuario(){
-	
-		var nomeBusca = document.getElementById("nomeBusca").value;
+	function buscarUsuario() {
+	    
+	    var nomeBusca = document.getElementById('nomeBusca').value;
+	    
+	    if (nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ /*Validando que tem que ter valor pra buscar no banco*/
 		
-		if(nomeBusca != null && nomeBusca != '' && nomeBusca.trim() != ''){ /*Validando que deve ter valor pra buscar no banco de dados*/
-
-			var urlAction = document.getElementById("formUser").action;
-			
-			$.ajax({
-				
-				method: "get",
-				url: urlAction,
-				data: "nomeBusca=" + nomeBusca + "&acao=buscarUsuarioAjax",
-				success: function (response){
-					
-					alert(response);
-					
-				
-				}
-					
-			}).fail(function(xhr, status, errorThrown){
-				alert("Erro ao buscar usuário por nome: " + xhr.responseText);
-			});
+		 var urlAction = document.getElementById('formUser').action;
+		
+		 $.ajax({
+		     
+		     method: "get",
+		     url : urlAction,
+		     data : "nomeBusca=" + nomeBusca + '&acao=buscarUserAjax',
+		     success: function (response) {
+			 
+			 var json = JSON.parse(response);
+			 
+			 
+			 $('#tabelaresultados > tbody > tr').remove();
+			 
+			  for(var p = 0; p < json.length; p++){
+			      $('#tabelaresultados > tbody').append('<tr> <td>'+json[p].id+'</td> <td> '+json[p].nome+'</td> <td><button type="button" class="btn btn-info">Ver</button></td></tr>');
+			  }
+			  
+			  document.getElementById('totalResultados').textContent = 'Resultados: ' + json.length;
+			 
+		     }
+		     
+		 }).fail(function(xhr, status, errorThrown){
+		    alert('Erro ao buscar usuário por nome: ' + xhr.responseText);
+		 });
 		
 		
-		}
-		
+	    }
+	    
 	}
-		
 		
 		//Delete usando AJAX
 	function criarDeleteComAjax(){

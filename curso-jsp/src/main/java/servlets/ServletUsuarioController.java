@@ -51,22 +51,19 @@ public class ServletUsuarioController extends HttpServlet {
 					response.getWriter().write("Excluído com sucesso!"); 
 					
 				} 
-				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUsuarioAjax")) {// Aqui busca o usuario com AJAX;
-
-					String nomeBusca = request.getParameter("nomeBusca");
-
-					List<ModelLogin> dadosJsonUser =  daoUsuarioRepository.consultaUsuarioList(nomeBusca);
-					
-					ObjectMapper mapper = new ObjectMapper();
-					
-					String json = mapper.writeValueAsString(dadosJsonUser);
- 
-					response.getWriter().write(json);
-
-				}
-				
-				
-				
+				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {// Aqui busca o usuario com AJAX;
+					 
+					 String nomeBusca = request.getParameter("nomeBusca");
+					 
+					 List<ModelLogin> dadosJsonUser =  daoUsuarioRepository.consultaUsuarioList(nomeBusca);
+					 
+					 ObjectMapper mapper = new ObjectMapper();
+					 
+					 String json = mapper.writeValueAsString(dadosJsonUser);
+					 
+					 response.getWriter().write(json);
+					 
+				 }
 				else{					
 					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
 				}
