@@ -73,6 +73,7 @@ public class FilterAutenticacao extends HttpFilter {
 			RequestDispatcher redirecionar = request.getRequestDispatcher("erro.jsp");
 			request.setAttribute("msg", e.getMessage());
 			redirecionar.forward(request, response);
+			
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {

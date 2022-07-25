@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="head.jsp"></jsp:include>
 
 <body>
@@ -49,9 +51,8 @@
 															<input type="hidden" name="acao" id="acao" value="">
 
 															<div class="form-group form-default form-static-label">
-																<input type="text" name="id" id="id"
-																	class="form-control" readonly="readonly"
-																	value="${modelLogin.id}"> <span
+																<input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}"> 
+																<span
 																	class="form-bar"></span> <label class="float-label">ID:</label>
 															</div>
 
@@ -98,6 +99,28 @@
 											</div>
 										</div>
 										<span id="msg">${msg}</span>
+
+										<div style="height: 350px; overflow: scroll;">
+											<table class="table" id="tabelaresultadosview">
+												<thead>
+													<tr>
+														<th scope="col">ID</th>
+														<th scope="col">Nome</th>
+														<th scope="col">Ver</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${modelLogins}" var="ml"> 
+														<tr>
+															<td><c:out value="${ml.id}"></c:out></td>
+															<td><c:out value="${ml.nome}"></c:out></td>
+															<td><a class="btn btn-success" href="<%= request.getContextPath()%>/ServletUsuarioController.java?acao=buscarEditar&id=${ml.id}">Ver</a></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+
 									</div>
 									<!-- Page-body end -->
 								</div>
@@ -133,7 +156,7 @@
 			</div>
 	      </div>
 	      
-	      <div style="height: 400px; overflow: scroll;">
+	      <div style="height: 350px; overflow: scroll;">
 			<table class="table" id="tabelaresultados">
 				<thead>
 					<tr>

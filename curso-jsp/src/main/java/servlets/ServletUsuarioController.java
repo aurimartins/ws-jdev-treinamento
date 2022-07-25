@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ModelLogin;
 
-@WebServlet("/ServletUsuarioController.java")
+@WebServlet(urlPatterns = {"/ServletUsuarioController.java"})
 public class ServletUsuarioController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -37,6 +37,9 @@ public class ServletUsuarioController extends HttpServlet {
 					
 					daoUsuarioRepository.deletarUser(idUser);
 					
+					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+					request.setAttribute("modelLogins", modelLogins);
+					
 					request.setAttribute("msg", "Excluído com sucesso!");
 					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
 					
@@ -47,8 +50,7 @@ public class ServletUsuarioController extends HttpServlet {
 					
 					daoUsuarioRepository.deletarUser(idUser);
 	
-					//Forma de escrever a resposta no caso do uso do Delete com AJAX
-					response.getWriter().write("Excluído com sucesso!"); 
+					response.getWriter().write("Excluído com sucesso!"); //Forma de escrever a resposta no caso do uso do Delete com AJAX 
 					
 				} 
 				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarUserAjax")) {// Aqui busca o usuario com AJAX;
@@ -65,9 +67,13 @@ public class ServletUsuarioController extends HttpServlet {
 					 
 				 }
 				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {// Aqui busca o usuario com AJAX;
+					
 					String id = request.getParameter("id");
 					
 					ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(id);
+					
+					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+					request.setAttribute("modelLogins", modelLogins);
 					
 					request.setAttribute("msg",	"Usuário em edição! ");
 					request.setAttribute("modelLogin", modelLogin);
@@ -75,7 +81,20 @@ public class ServletUsuarioController extends HttpServlet {
 					
 					
 				}
-				else{					
+				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("listarUser")) {// Aqui busca o usuario com AJAX;
+					
+					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+					
+					request.setAttribute("msg",	"Usuário carregado! ");
+					request.setAttribute("modelLogins", modelLogins);
+					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);//Redirecionamento para a página de Cadastro de Usuários
+					
+					
+				}
+				else{		
+					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+					request.setAttribute("modelLogins", modelLogins);
+					
 					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);// Aqui redireciona pra página de usuario;
 				}
 
@@ -121,7 +140,8 @@ public class ServletUsuarioController extends HttpServlet {
 				}
 				modelLogin =  daoUsuarioRepository.gravarUsuario(modelLogin);
 			}
-			
+			List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList();
+			request.setAttribute("modelLogins", modelLogins);
 			
 			request.setAttribute("msg",	msg);
 			request.setAttribute("modelLogin", modelLogin);
