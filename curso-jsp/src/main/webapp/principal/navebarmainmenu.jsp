@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<% taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- Escopo de sessão  -->
+<c:set scope="session" var="isAdmin" value='<%= request.getSession().getAttribute("isAdmin").toString()%>'></c:>
 
 <nav class="pcoded-navbar">
 	<div class="sidebar_toggle">
@@ -50,14 +55,18 @@
 					data-i18n="nav.basic-components.main">Components</span> <span
 					class="pcoded-mcaret"></span>
 			</a>
+				
 				<ul class="pcoded-submenu">
-					<li class=" ">
-					<a href="<%= request.getContextPath()%>/ServletUsuarioController.java?acao=listarUser"
-						class="waves-effect waves-dark"> <span class="pcoded-micon"><i
-								class="ti-angle-right"></i></span> <span class="pcoded-mtext"
-							data-i18n="nav.basic-components.alert">Usuário</span> <span
-							class="pcoded-mcaret"></span>
-					</a></li>
+					<c:if teste="${isAdmin }"> <!--Teste realizado para verificar se usuario é ADMIN -->
+						<li class=" ">
+							<a href="<%= request.getContextPath()%>/ServletUsuarioController.java?acao=listarUser"
+								class="waves-effect waves-dark"> <span class="pcoded-micon"><i
+										class="ti-angle-right"></i></span> <span class="pcoded-mtext"
+									data-i18n="nav.basic-components.alert">Usuário</span> <span
+									class="pcoded-mcaret"></span>
+							</a>
+						</li>
+					</c:if>
 					<li class=" "><a href="breadcrumb.html"
 						class="waves-effect waves-dark"> <span class="pcoded-micon"><i
 								class="ti-angle-right"></i></span> <span class="pcoded-mtext"
