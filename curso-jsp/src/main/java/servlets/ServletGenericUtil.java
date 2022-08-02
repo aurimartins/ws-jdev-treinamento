@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.Serializable;
+
 import dao.DAOUsuarioRepository;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ public class ServletGenericUtil extends HttpServlet implements Serializable {
 	
 	private DAOUsuarioRepository daoUsuarioRepository = new DAOUsuarioRepository();
 	
+	
 	/*metodo que retorna o usuario logado*/
 	public Long getUserLogado(HttpServletRequest request) throws Exception{
 		
@@ -21,8 +23,5 @@ public class ServletGenericUtil extends HttpServlet implements Serializable {
 				
 		return daoUsuarioRepository.consultaUsuarioLogado(usuarioLogado).getId();
 		
-		
 	}
-	
-
 }
