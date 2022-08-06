@@ -62,6 +62,18 @@
 																	value="${modelLogin.nome}"> <span
 																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
+															
+															
+															<div class="form-group form-default form-static-label">
+															<select class="form-control" arial-label="Default select example" name="perfil">
+																<option disable="disable">-- Selecione o perfil --</option>
+																<option value="ADMIN">Admin</option>
+																<option value="SECRETARIA">Secretária</option>
+																<option value="AUXILIAR">Auxiliar</option>									
+															</select>
+															<span class="form-bar"></span> <label
+																	class="float-label">Perfil:</label>
+															</div>
 
 															<div class="form-group form-default form-static-label">
 																<input type="email" name="email" id="email"

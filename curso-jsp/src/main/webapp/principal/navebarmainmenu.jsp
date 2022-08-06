@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!-- Escopo de sessão (Por ser um scopo de sessão pode ser usado em todo o projeto) -->
-<c:set scope="session" var="isAdmin" value='<%= request.getSession().getAttribute("isAdmin").toString() %>'></c:set>
+<c:set scope="session" var="perfil" value='<%= request.getSession().getAttribute("perfil").toString() %>'></c:set>
 
 <nav class="pcoded-navbar">
 	<div class="sidebar_toggle">
@@ -57,7 +57,7 @@
 			</a>
 				
 				<ul class="pcoded-submenu">
-<!-- JSTL -->		<c:if test="${isAdmin }"> <!--Teste realizado para verificar se usuario é ADMIN -->
+<!-- JSTL -->		<c:if test="${perfil == 'ADMIN' }"> <!--Teste realizado para verificar se usuario é ADMIN -->
 						<li class=" ">
 							<a href="<%= request.getContextPath()%>/ServletUsuarioController.java?acao=listarUser"
 								class="waves-effect waves-dark"> <span class="pcoded-micon"><i
