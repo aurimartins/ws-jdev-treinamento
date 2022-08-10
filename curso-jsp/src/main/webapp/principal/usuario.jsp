@@ -1,4 +1,4 @@
-<%@page import="model.ModelLogin"%>
+<%@ page import="model.ModelLogin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -64,9 +64,18 @@
 																	class="form-bar"></span> <label class="float-label">Nome:</label>
 															</div>
 															
+															<div class="form-group form-default form-static-label">
+																<input type="email" name="email" id="email"
+																	class="form-control" required="required"
+																	autocapitalize="off" value="${modelLogin.email}">
+																<span class="form-bar"></span> <label
+																	class="float-label">E-mail:</label>
+															</div>
+															
 												<!-- Combo box de Perfil -->
 															<div class="form-group form-default form-static-label">
-																<select class="form-control" arial-label="Default select example" name="perfil">
+																<select class="form-control" 
+																		arial-label="Default select example" name="perfil">
 																	<option disable="disable">-- Selecione o perfil --</option>
 																	
 																	<option value="ADMIN" <%
@@ -87,8 +96,7 @@
 																				out.print(" ");
 																				out.print("selected=\"selected\"");
 																				out.print(" ");
-																			} %> >Secretária
-																	</option>
+																			} %> >Secretária</option>
 
 																	<option value="AUXILIAR"  <%
 																		 
@@ -98,20 +106,13 @@
 																				out.print(" ");
 																				out.print("selected=\"selected\"");
 																				out.print(" ");
-																			} %> >Auxiliar
-																	</option>									
+																			} %> >Auxiliar</option>									
 																</select>
+																
 																<span class="form-bar"></span> 
 																	<label class="float-label">Perfil:</label>
 															</div>
-
-															<div class="form-group form-default form-static-label">
-																<input type="email" name="email" id="email"
-																	class="form-control" required="required"
-																	autocapitalize="off" value="${modelLogin.email}">
-																<span class="form-bar"></span> <label
-																	class="float-label">E-mail:</label>
-															</div>
+													<!-- FIM Combo box de Perfil -->
 
 															<div class="form-group form-default form-static-label">
 																<input type="text" name="login" id="login"
@@ -128,6 +129,31 @@
 																<span class="form-bar"></span> <label
 																	class="float-label">Senha:</label>
 															</div>
+														
+														<!-- Check Radio SEXO-->
+															<div class="form-group form-default">
+																<input type="radio" name="sexo" checked="checked" value="MASCULINO" <%
+																	modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																
+																	if(modelLogin != null && modelLogin.getSexo().equals("MASCULINO")){
+																			out.print(" ");
+																			out.print("checked=\"checked\"");
+																			out.print(" ");
+																		}
+																%>>Masculino </>
+																
+																<input type="radio" name="sexo" value="FEMININO" <%
+																	modelLogin = (ModelLogin) request.getAttribute("modelLogin");
+																	
+																	if(modelLogin != null && modelLogin.getSexo().equals("FEMININO")){
+																			out.print(" ");
+																			out.print("checked=\"checked\"");
+																			out.print(" ");
+																		}
+																%>>Feminino </>
+															
+															</div>
+															<!-- FIM Check RadioButton de SEXO-->
 
 															<button type="button" class="btn btn-primary waves-effect waves-light" onclick="limparForm();">Novo</button>
 															<button type="submit" class="btn btn-success waves-effect waves-light">Salvar</button>
