@@ -46,7 +46,7 @@
 													<div class="card-block">
 														<h4 class="sub-title">Cadastro de Usuário</h4>
 
-														<form class="form-material"
+														<form class="form-material" enctype="multipart/form-data"
 															action="<%=request.getContextPath()%>/ServletUsuarioController"	method="post" id="formUser">
 
 															<input type="hidden" name="acao" id="acao" value="">
@@ -55,6 +55,16 @@
 																<input type="text" name="id" id="id" class="form-control" readonly="readonly" value="${modelLogin.id}"> 
 																<span
 																	class="form-bar"></span> <label class="float-label">ID:</label>
+															</div>
+															
+															<div class="form-group form-default input-group mb-4">
+																<div class="input-group-prepend">
+																	<img alt="Imagem User" src="https://scontent.fgig4-1.fna.fbcdn.net/v/t39.30808-6/283533730_4798351453609234_6897018612029899303_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGNr6us853IfL9e-0F-uziVUdHNpITOLe5R0c2khM4t7g8bRvce6KVySPeTkWL7520Hlx-NhaERB7ooDxvEWoTH&_nc_ohc=Cr_fo8_TJ9gAX82AzgO&tn=au77lCCbQszRsNA2&_nc_ht=scontent.fgig4-1.fna&oh=00_AT9ty09uxDdk1SKSabeOC7NMig_BQuGzymOjlcg6CDGTQw&oe=6309A7D7" width="70px">
+																</div>
+																<input type="file" class="form-control-file" style="margin-top: 15px; margin-left: 5px;">
+																
+																
+															
 															</div>
 
 															<div class="form-group form-default form-static-label">
