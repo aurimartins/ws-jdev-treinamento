@@ -141,9 +141,14 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setSexo(sexo);
 			
 			if(ServletFileUpload.isMultipartContent(request)) {
+				
+				/*Converte imagem em byte para salvar no banco de dados*/
 				Part part = request.getPart("filefoto"); //Pega foto da tela
 				byte[] foto = IOUtils.toByteArray(part.getInputStream()); //convert imagem para byte
-				String imagemBase64 = new Base64().encodeBase64String(foto);
+				String imagemBase64 = "data:image/" + part.getContentType().split("\\/")[1] + ";base64," + new Base64().encodeBase64String(foto);
+				
+				modelLogin.setFotouser(imagemBase64); //setando extensão
+				modelLogin.setExtensaofotouser(part.getContentType().split("\\/")[1]); //setando imagem
 			}
 			
 			if(daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
