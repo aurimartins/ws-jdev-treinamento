@@ -59,9 +59,9 @@
 															
 															<div class="form-group form-default input-group mb-4">
 																<div class="input-group-prepend">
-																	<img alt="Imagem User" src="https://scontent.fgig4-1.fna.fbcdn.net/v/t39.30808-6/283533730_4798351453609234_6897018612029899303_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGNr6us853IfL9e-0F-uziVUdHNpITOLe5R0c2khM4t7g8bRvce6KVySPeTkWL7520Hlx-NhaERB7ooDxvEWoTH&_nc_ohc=Cr_fo8_TJ9gAX82AzgO&tn=au77lCCbQszRsNA2&_nc_ht=scontent.fgig4-1.fna&oh=00_AT9ty09uxDdk1SKSabeOC7NMig_BQuGzymOjlcg6CDGTQw&oe=6309A7D7" width="70px">
+																	<img alt="Imagem User" id="fotoembase64" src="" width="70px">
 																</div>
-																<input type="file" class="form-control-file" style="margin-top: 15px; margin-left: 5px;">
+																<input type="file" id="filefoto" name="filefoto" accept="image/*" onchange="visualizarImg('fotoembase64', 'filefoto');" class="form-control-file" style="margin-top: 15px; margin-left: 5px;">
 																
 																
 															
@@ -262,6 +262,24 @@
 
 <!-- JavaScript -->
 	<script type="text/javascript">
+	
+	function visualizarImg(fotoembase64, filefoto){
+		
+		var preview = document.getElementById(fotoembase64); // campo IMG html
+		var fileUser = document.getElementById(filefoto).files[0];
+		var reader =  new FileReader();
+		
+		reader.onloadend = function(){
+			preview.src = reader.result; //Carrega a foto na tela
+		};
+		
+		if(fileUser){
+			reader.readAsDataURL(fileUser);
+		}else{
+			preview.src = '';
+		}
+	}
+	
 	
 	function verEditar(id){
 

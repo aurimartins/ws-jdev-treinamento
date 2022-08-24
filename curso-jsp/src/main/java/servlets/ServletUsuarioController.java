@@ -3,6 +3,10 @@ package servlets;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.tomcat.jakartaee.commons.io.IOUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dao.DAOUsuarioRepository;
@@ -10,9 +14,9 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 import model.ModelLogin;
 
 @MultipartConfig //anotação usada para fazer upload de fotos
@@ -136,14 +140,11 @@ public class ServletUsuarioController extends ServletGenericUtil {
 			modelLogin.setPerfil(perfil);
 			modelLogin.setSexo(sexo);
 			
-			
-	
-			
-			
-			
-			
-			
-			
+			if(ServletFileUpload.isMultipartContent(request)) {
+				Part part = request.getPart("filefoto"); //Pega foto da tela
+				byte[] foto = IOUtils.toByteArray(part.getInputStream()); //convert imagem para byte
+				String imagemBase64 = new Base64().encodeBase64String(foto);
+			}
 			
 			if(daoUsuarioRepository.validarLogin(modelLogin.getLogin()) && modelLogin.getId() == null) {
 				msg = "Login existente! Informe um novo Login. ";
