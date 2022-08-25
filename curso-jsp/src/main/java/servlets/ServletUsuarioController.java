@@ -75,9 +75,9 @@ public class ServletUsuarioController extends ServletGenericUtil {
 				 }
 				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("buscarEditar")) {// Aqui busca o usuario com AJAX;
 					
-					String id = request.getParameter("id");
+					String idUser = request.getParameter("id");
 					
-					ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(id,super.getUserLogado(request));
+					ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(idUser,super.getUserLogado(request));
 					
 					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
 					request.setAttribute("modelLogins", modelLogins);
@@ -97,6 +97,17 @@ public class ServletUsuarioController extends ServletGenericUtil {
 					request.getRequestDispatcher("principal/usuario.jsp").forward(request, response);//Redirecionamento para a página de Cadastro de Usuários
 					
 					
+				}
+				else if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("downloadFoto")) {// Aqui busca o usuario com AJAX;
+					
+					String idUser = request.getParameter("id");
+					ModelLogin modelLogin = daoUsuarioRepository.consultaUsuarioID(idUser, super.getUserLogado(request));
+
+						if(modelLogin.getFotouser() != null && !modelLogin.getFotouser().isEmpty()) {
+							
+							response.setHeader("Content-Disposition", "attachment;filename=arquivo." + modelLogin.getExtensaofotouser());
+							response.getOutputStream().write(new Base64().decodeBase64(modelLogin.getFotouser().split("\\,")[1]));
+						}
 				}
 				else{		
 					List<ModelLogin> modelLogins = daoUsuarioRepository.consultaUsuarioList(super.getUserLogado(request));
