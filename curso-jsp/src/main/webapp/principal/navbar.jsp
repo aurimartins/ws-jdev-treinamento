@@ -19,11 +19,11 @@
 					</div>
 				</div>
 			</div>
-			<a href="index.html"> <img class="img-fluid"
-				src="<%= request.getContextPath() %>/assets/images/logo.png"
-				alt="Theme-Logo" />
-			</a> <a class="mobile-options waves-effect waves-light"> <i
-				class="ti-more"></i>
+			<a href="index.html"> 
+				<img align="middle" width= "60px" class="img-fluid" src="<%= request.getContextPath() %>/assets/images/logo.png" alt="Theme-Logo" />
+			</a> 
+			<a class="mobile-options waves-effect waves-light"> 
+				<i class="ti-more"></i>
 			</a>
 		</div>
 
@@ -55,7 +55,7 @@
 				</a>
 					<ul class="show-notification">
 						<li>
-							<h6>Notifications</h6> <label class="label label-danger">New</label>
+							<h6>Novidades</h6> <label class="label label-danger">Novo</label>
 						</li>
 						<li class="waves-effect waves-light">
 							<div class="media">
