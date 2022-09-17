@@ -6,6 +6,7 @@ CREATE DATABASE "curso-jsp"
        LC_CTYPE = 'Portuguese_Brazil.1252'
        CONNECTION LIMIT = -1;
        
+-------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE public.model_login
 (
@@ -21,16 +22,58 @@ WITH (OIDS=FALSE);
 
 ALTER TABLE public.model_login OWNER TO postgres;
 
-ALTER TABLE public.model_login OWNER TO postgres;
+-------------------------------------------------------------------------------------------------------------------------------------
  
 INSERT INTO public.model_logn(login,senha) VALUES ('admin','admin');
+
+-------------------------------------------------------------------------------------------------------------------------------------
   
 select * from model_login where upper (login) = upper ('Admin');
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
 select count (1) > 0 as existe from model_login where upper (login) = upper (admin);
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 alter table model_login add column useradmin boolean not null default false; 
 
+-------------------------------------------------------------------------------------------------------------------------------------
+
 alter table model_login add column usuario_id bigint not null default 1;
 
-alter table model_login add constraint usuario_fk foreign key (usuario_id) references model_login (id); 
+-------------------------------------------------------------------------------------------------------------------------------------
+
+alter table model_login add constraint usuario_fk foreign key (usuario_id) references model_login (id);
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+--
+---criando tabela telefone no banco de dados
+
+CREATE TABLE public.telefone (
+
+id integer not null default nextval('telefone_seq'::regclass),
+numero character varying(50) not null,
+usuario_pai_id bigint not null,
+usuario_cad_id bigint not null,
+
+constraint telefone_pk primary key (id),
+constraint usuario_pai_fk foreign key (usuario_pai_id) references model_login(id),
+constraint usuario_cad_fk foreign key (usuario_cad_id) references model_login(id) 
+
+-------------------------------------------------------------------------------------------------------------------------------------
+--
+---criando sequence telefone no banco de dados
+
+CREATE SEQUENCE public.telefone_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.telefone_seq
+  OWNER TO postgres;
+  
+  -------------------------------------------------------------------------------------------------------------------------------------
+  
