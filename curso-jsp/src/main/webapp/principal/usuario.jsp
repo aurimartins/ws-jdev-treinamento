@@ -367,7 +367,10 @@ function verEditar(id){
 		window.location.href = urlAction +'?acao=buscarEditar&id='+id;
 }
 	
-	
+
+/*
+ * Função que buscar usuarios por paginação
+ */
 function buscaUserPagAjax(url){
     
     var urlAction = document.getElementById('formUser').action;
@@ -393,6 +396,8 @@ function buscaUserPagAjax(url){
 		
 			for (var p = 0; p < totalPagina; p++){
 				var url = 'nomeBusca=' + nomeBusca + '&acao=buscarUserAjaxPage&pagina='+ (p * 5);
+				
+				//Monta a paginação chamando outra função Ajax a partir do onclik="buscaUserPagAjax"
 		    	$("#ulPaginacaoUserAjax").append('<li class="page-item"><a class="page-link" href="#" onclick="buscaUserPagAjax(\''+url+'\')">'+ (p + 1) +'</a></li>'); 
 			}
 		}
@@ -403,6 +408,9 @@ function buscaUserPagAjax(url){
 }
 
 
+/*
+ * Função responsável por buscar usuários
+ */
 function buscarUsuario() {
     
     var nomeBusca = document.getElementById('nomeBusca').value;
@@ -432,6 +440,8 @@ function buscarUsuario() {
 		    
 			for (var p = 0; p < totalPagina; p++){
 				var url = 'nomeBusca=' + nomeBusca + '&acao=buscarUserAjaxPage&pagina='+ (p * 5);
+				
+				//Monta a paginação chamando outra função Ajax a partir do onclik="buscaUserPagAjax"
 				$("#ulPaginacaoUserAjax").append('<li class="page-item"><a class="page-link" href="#" onclick="buscaUserPagAjax(\''+url+'\')">'+ (p + 1) +'</a></li>');
 			}
 	     }
