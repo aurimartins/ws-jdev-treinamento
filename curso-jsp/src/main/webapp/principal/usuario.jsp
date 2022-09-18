@@ -211,6 +211,9 @@
 															<button type="submit" class="btn btn-success waves-effect waves-light">Salvar</button>
 															<button type="button" class="btn btn-danger waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button> 
 															<!-- onclick = "criaDelete();" - Outra forma de criar a função Delete -->
+															<c:if test="${modelLogin.id > 0}">
+																<a href="<%= request.getContextPath() %>/ServletTelefone?idUser=${modelLogin.id}" class="btn btn-primary active">Telefone </a>
+															</c:if>
 															<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
 
 														</form>
