@@ -331,6 +331,11 @@
 
 <!-- JavaScript -->
 	<script type="text/javascript">
+
+//Função JQuery $ que valida apenas número no campo da tela passando o id (#numero e #cep) a ser testado 
+$("#numero, #cep").keypress(function(event){
+	return /\d/.test(String.fromCharCode(event.keyCode));
+});
 	
 function pesquisaCep(){
 		var cep = $("#cep").val();

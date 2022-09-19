@@ -118,6 +118,17 @@
 
 	<!-- Required Jquery -->
 	<jsp:include page="javascriptfile.jsp"></jsp:include>
+
+<script type="text/javascript">
+
+
+//Função JQuery $ que valida apenas número no campo da tela passando o id (#numero) a ser testado 
+$("#numero").keypress(function(event){
+	return /\d/.test(String.fromCharCode(event.keyCode));
+});
+
+</script>
+
 </body>
 
 </html>
