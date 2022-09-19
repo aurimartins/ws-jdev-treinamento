@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"  %>
 
 <jsp:include page="head.jsp"></jsp:include>
 
@@ -39,11 +39,15 @@
 
 									<!-- Page-body start -->
 									<div class="page-body">
+										
+										<!-- Base para montar Formulário com Bootstrap Inicio-->
 										<div class="row">
 											<div class="col-sm-12">
 												<!-- Basic Form Inputs card start -->
 												<div class="card">
 													<div class="card-block">
+										<!-- Base para montar Formulário com Bootstrap Fim-->
+													
 														<h4 class="sub-title">Cadastro de Usuário</h4>
 
 														<form class="form-material" enctype="multipart/form-data"
@@ -212,7 +216,7 @@
 															<button type="button" class="btn btn-danger waves-effect waves-light" onclick="criarDeleteComAjax();">Excluir</button> 
 															<!-- onclick = "criaDelete();" - Outra forma de criar a função Delete -->
 															<c:if test="${modelLogin.id > 0}">
-																<a href="<%= request.getContextPath() %>/ServletTelefone?idUser=${modelLogin.id}" class="btn btn-primary active">Telefone </a>
+																<a href="<%= request.getContextPath() %>/ServletTelefone?iduser=${modelLogin.id}" class="btn btn-primary active">Telefone </a>
 															</c:if>
 															<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalUsuario">Pesquisar</button>
 

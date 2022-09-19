@@ -12,7 +12,9 @@ public class ModelTelefone implements Serializable{
 	
 	//Relacionamento de objetos
 	private ModelLogin usuario_pai_id;
+	
 	private ModelLogin usuario_cad_id;
+	
 	public Long getId() {
 		return id;
 	}

@@ -362,7 +362,7 @@ public class DAOUsuarioRepository {
 
 		ModelLogin modelLogin = new ModelLogin();
 
-		String sql = "select * from model_login where id = ? and useradmin is false and usuario_id = ?";
+		String sql = "select * from model_login where id = ? and useradmin is false";
 
 		PreparedStatement statement = connection.prepareStatement(sql); // preparando SQL
 
