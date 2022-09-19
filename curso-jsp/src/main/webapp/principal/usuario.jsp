@@ -88,6 +88,13 @@
 															</div>
 															
 															<div class="form-group form-default form-static-label">
+																<input type="text" name="dataNascimento" id="dataNascimento"
+																	class="form-control" required="required"
+																	value="${modelLogin.dataNascimento}"> <span
+																	class="form-bar"></span> <label class="float-label">Data de Nascimento:</label>
+															</div>
+															
+															<div class="form-group form-default form-static-label">
 																<input type="email" name="email" id="email"
 																	class="form-control" required="required"
 																	autocapitalize="off" value="${modelLogin.email}">
@@ -332,6 +339,21 @@
 <!-- JavaScript -->
 	<script type="text/javascript">
 
+//Função JQuery $ Calendário
+$( function(){
+		  
+		  $("#dataNascimento").datepicker({
+			    dateFormat: 'dd/mm/yy',
+			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+			    dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+			    nextText: 'Próximo',
+			    prevText: 'Anterior'
+			});
+});
+	
 //Função JQuery $ que valida apenas número no campo da tela passando o id (#numero e #cep) a ser testado 
 $("#numero, #cep").keypress(function(event){
 	return /\d/.test(String.fromCharCode(event.keyCode));

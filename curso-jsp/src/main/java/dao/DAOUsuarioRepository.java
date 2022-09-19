@@ -21,22 +21,24 @@ public class DAOUsuarioRepository {
 
 		if (objeto.isNovo()) {/* Grava um novo */
 
-			String sql = "INSERT INTO public.model_login(login, senha, nome, email, usuario_id, perfil, sexo, cep, logradouro, bairro, localidade, uf, numero) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO public.model_login(login, senha, nome, email, usuario_id, perfil, sexo, cep, logradouro, bairro, localidade, uf, numero, datanascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement preparedSql = connection.prepareStatement(sql);
 
-			preparedSql.setString	(1, objeto.getLogin()		);
-			preparedSql.setString	(2, objeto.getSenha()		);
-			preparedSql.setString	(3, objeto.getNome()		);
-			preparedSql.setString	(4, objeto.getEmail()		);
-			preparedSql.setLong		(5, userLogado				);
-			preparedSql.setString	(6, objeto.getPerfil()		);
-			preparedSql.setString	(7, objeto.getSexo()		);
-			preparedSql.setString	(8, objeto.getCep()			);
-			preparedSql.setString	(9, objeto.getLogradouro()	);
-			preparedSql.setString	(10, objeto.getBairro()		);
-			preparedSql.setString	(11, objeto.getLocalidade()	);
-			preparedSql.setString	(12, objeto.getUf()			);
-			preparedSql.setString	(13, objeto.getNumero()		);
+			preparedSql.setString	(1, objeto.getLogin());
+			preparedSql.setString	(2, objeto.getSenha());
+			preparedSql.setString	(3, objeto.getNome());
+			preparedSql.setString	(4, objeto.getEmail());
+			preparedSql.setLong		(5, userLogado);
+			preparedSql.setString	(6, objeto.getPerfil());
+			preparedSql.setString	(7, objeto.getSexo());
+			preparedSql.setString	(8, objeto.getCep());
+			preparedSql.setString	(9, objeto.getLogradouro());
+			preparedSql.setString	(10, objeto.getBairro());
+			preparedSql.setString	(11, objeto.getLocalidade());
+			preparedSql.setString	(12, objeto.getUf());
+			preparedSql.setString	(13, objeto.getNumero());
+			preparedSql.setDate		(14, objeto.getDataNascimento());
+
 
 			preparedSql.execute();
 			connection.commit();
@@ -57,21 +59,23 @@ public class DAOUsuarioRepository {
 			}
 
 		} else {
-			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=?, cep=?, logradouro=?, bairro=?, localidade=?, uf=?, numero=?  WHERE id = " + objeto.getId() + ";";
+			String sql = "UPDATE model_login SET login=?, senha=?, nome=?, email=?, perfil=?, sexo=?, cep=?, logradouro=?, bairro=?, localidade=?, uf=?, numero=?, datanascimento =?  WHERE id = " + objeto.getId() + ";";
 			PreparedStatement preparedSql = connection.prepareStatement(sql);
 
-			preparedSql.setString	(1, objeto.getLogin()		);
-			preparedSql.setString	(2, objeto.getSenha()		);
-			preparedSql.setString	(3, objeto.getNome()		);
-			preparedSql.setString	(4, objeto.getEmail()		);
-			preparedSql.setString	(5, objeto.getPerfil()		);
-			preparedSql.setString	(6, objeto.getSexo()		);
-			preparedSql.setString	(7, objeto.getCep()			);
-			preparedSql.setString	(8, objeto.getLogradouro()	);
-			preparedSql.setString	(9, objeto.getBairro()		);
-			preparedSql.setString	(10, objeto.getLocalidade()	);
-			preparedSql.setString	(11, objeto.getUf()			);
-			preparedSql.setString	(12, objeto.getNumero()		);
+			preparedSql.setString	(1, objeto.getLogin());
+			preparedSql.setString	(2, objeto.getSenha());
+			preparedSql.setString	(3, objeto.getNome());
+			preparedSql.setString	(4, objeto.getEmail());
+			preparedSql.setString	(5, objeto.getPerfil());
+			preparedSql.setString	(6, objeto.getSexo());
+			preparedSql.setString	(7, objeto.getCep());
+			preparedSql.setString	(8, objeto.getLogradouro());
+			preparedSql.setString	(9, objeto.getBairro());
+			preparedSql.setString	(10, objeto.getLocalidade());
+			preparedSql.setString	(11, objeto.getUf());
+			preparedSql.setString	(12, objeto.getNumero());
+			preparedSql.setDate		(13, objeto.getDataNascimento());
+
 
 			preparedSql.executeUpdate();
 			connection.commit();
